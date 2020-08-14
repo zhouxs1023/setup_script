@@ -88,14 +88,11 @@ procedure CurStepChanged(CurStep: TSetupStep);//添加环境变量
 begin
 	if (CurStep = ssPostInstall) and IsTaskSelected('AddEnvValue') then
 	begin
-// 		SetEnv('path',ExpandConstant('{app}\gtkwave\bin;{app}\bin'),true,true); 
-//		在这儿调用,一定在这儿调用,安装完无须重启,立即生效
-	   SetEnv('path',ExpandConstant('{app}\gtkwave\bin'),true,true); 		
-	   SetEnv('path',ExpandConstant('{app}\bin'),true,true); 
-//	   if WizardIsComponentSelected('gtkwave') then
-//	   begin
-//		 SetEnv('path',ExpandConstant('{app}\gtkwave\bin'),true,true); 
-//	   end;
+	   SetEnv('path',ExpandConstant('{app}\bin'),true,true); 		
+	   if WizardIsComponentSelected('gtkwave') then
+	   begin
+		 SetEnv('path',ExpandConstant('{app}\gtkwave\bin'),true,true); 
+	   end;
 	end;
 end;
 
@@ -104,10 +101,7 @@ procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);//删除环�
 begin
 	if CurUninstallStep = usPostUninstall then
 	begin
-	MsgBox('start uninstall ........... ',mbInformation,MB_OK);
-//	SetEnv('path',ExpandConstant('{app}\gtkwave\bin;{app}\bin'),false,true);
-	SetEnv('path',ExpandConstant('{app}\gtkwave\bin'),false,true);
 	SetEnv('path',ExpandConstant('{app}\bin'),false,true);
-	MsgBox('Finished uninstall ........... ',mbInformation,MB_OK);
+	SetEnv('path',ExpandConstant('{app}\gtkwave\bin'),false,true);
 	end;
 end;

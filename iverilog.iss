@@ -60,11 +60,11 @@ Name: "gtkwave"; Description: "gtkwave Files"; 	Types: full
 ;[Run]
 ;Filename: "{app}"; Description: "{app}"; Flags: nowait postinstall skipifsilent
 
-;#include "AddEnvValue.iss"
-
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 Name: "AddEnvValue" ; Description:"Add Environment variable"; Flags: unchecked
+
+;#include "AddEnvValue.iss"			//以下代码可以删除，把#include "AddEnvValue.iss"包含在文件中即可
 
 [Code]
 
